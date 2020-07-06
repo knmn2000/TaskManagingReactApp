@@ -1,38 +1,165 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Arvo&family=Bitter&family=Copse&family=Cutive&family=Lora:wght@700&family=Sanchez&family=Scope+One&family=Slabo+27px&family=Trocchi&family=Vesper+Libre&display=swap"); */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
+  font-family: "Lato", "sans-serif";
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: #eeeeee;
+}
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding-top: 130px;
+}
+.grid {
+  display: grid;
+  /* grid-template-columns: 2fr 1fr; */
+  grid-template-columns: repeat(2, 450px);
+  column-gap: 50px;
+}
+.navbar {
+  overflow: hidden;
+  width: 100%;
+  margin: auto;
+  height: 100px;
+  position: fixed;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  background: #000000;
+  color: #ffffff;
+}
+.navbar h2 {
+  font-size: 40px;
+  margin: 20px;
+}
+label {
+  margin: 10px 0;
+  display: flex;
+}
+input,
+textarea {
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+input[type="checkbox"] {
+  display: inline;
+  align-content: left;
+}
+input[placeholder="Enter Description"] {
+  width: 100%;
+  height: 100px;
+  /* overflow-wrap: break-word; */
+  word-wrap: break-word;
+}
+.navbar span {
+  padding-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.description {
+  /* padding-top: 130px; */
+  font-size: 30px;
+}
+label span {
+  padding: 1px;
+  margin-left: 2px;
+}
+button {
+  cursor: pointer;
+  background-color: #000000;
+  box-shadow: var(--box-shadow);
+  color: #fff;
+  border: 0px;
+  display: block;
+  font-size: 16px;
+  margin: 10px 0 25px;
+  padding: 5px;
+  width: 100%;
+}
+label button {
+  width: 15%;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.uncheck {
+  background-color: #ff6b6b;
+}
+.check {
+  background-color: #47c75cd5;
+}
+
+.done {
+  color: #47c75cd5;
+}
+.pending {
+  color: #ff6b6b;
+}
+.card {
+  background-color: #fff;
+  border-radius: 1px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  margin: 15px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 20px;
+  min-height: 250px;
+}
+.card-body p {
+  font-size: 14px;
+  margin: 0 0 40px 0;
+  font-weight: 500;
+  color: rgb(70, 68, 68);
+}
+.tag {
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 12px;
+  margin: 0;
+  padding: 2px 10px;
+  text-transform: uppercase;
+}
+.tag-done {
+  background-color: #47c75cd5;
+}
+.tag-pending {
+  background-color: #ff6b6b;
+}
+.card textarea {
+  border: 0px;
+  margin: 0px;
+  resize: none;
+}
+
+.card h4 {
+  margin: 0px;
+}
+
+.text-title {
+  height: 45px;
+  font-size: 26px;
+  overflow: hidden;
+}
+.text-description {
+  width: 250px;
+  height: 120px;
+}
+.tasks {
+  padding-top: 10px;
 }
