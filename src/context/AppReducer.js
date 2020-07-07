@@ -7,6 +7,7 @@ export default (state, action) => {
         tasks: action.payload,
       };
     case "ADD_TASK":
+    case "EDIT_TASK":
       return {
         ...state,
         loading: false,
