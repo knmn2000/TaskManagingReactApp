@@ -18,7 +18,8 @@ export const GlobalProvider = ({ children }) => {
       localStorage.setItem("tasks", JSON.stringify(tasks_array));
       dispatch({
         type: "ADD_TASK",
-        payload: tasks_array,
+        // payload: task,
+        payload: task,
       });
     } catch (err) {
       console.log(err);
@@ -45,18 +46,17 @@ export const GlobalProvider = ({ children }) => {
   }
   function editTask(task) {
     try {
-      const tasks_array = JSON.parse(localStorage.getItem("tasks")) || [];
-      var index = tasks_array.map((object) => {
-        if (task["id"] == object["id"]) {
-          return tasks_array.indexOf(object);
-        }
-      });
-      // console.log(tasks_array);
-      console.log(index);
-      localStorage.setItem("tasks", JSON.stringify(tasks_array));
+      // const tasks_array = JSON.parse(localStorage.getItem("tasks")) || [];
+      // var index = tasks_array.map((object) => {
+      //   if (task["id"] === object["id"]) {
+      //     return tasks_array.indexOf(object["id"]);
+      //   }
+      // });
+      // tasks_array[index.indexOf(-1)] = task;
+      // localStorage.setItem("tasks", JSON.stringify(tasks_array));
       dispatch({
         type: "EDIT_TASK",
-        payload: tasks_array,
+        payload: task,
       });
     } catch (err) {
       console.log(err);

@@ -44,7 +44,7 @@ export const AddTask = () => {
               className={status ? "btn check" : "btn uncheck"}
               onClick={(e) => setStatus(!status)}
             >
-              Done{" "}
+              {status ? "Done" : "Pending"}
               <span>
                 {status ? (
                   <FontAwesomeIcon icon={faCheck} />

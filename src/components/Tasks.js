@@ -9,8 +9,8 @@ export const Tasks = () => {
   }, []);
   return (
     <div className="tasks">
-      {tasks.map((task) => {
-        return <Card task={task} />;
+      {tasks.reverse().map((task) => {
+        return <Card task={task} key={task["id"]} />;
       })}
       {/* <Card text="aefeafae" />
       <Card text="aefeafae" /> */}

@@ -1,50 +1,100 @@
-import React, { useState, useContext } from "react";
-import Editable from "./Editable";
+import React, { useState, useContext, useEffect, useReducer } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import AppReducer from "./../context/AppReducer";
+//  TODO - CLEAN THIS UP
+//         REMOVE REDUNDANT STUFF
 export const Card = ({ task }) => {
+  const initialState = {
+    tasks: [],
+    error: null,
+    loading: true,
+  };
   const taskContext = useContext(GlobalContext);
-  const [taskTitle, setTaskTitle] = useState(task["title"]);
-  const [taskDescription, setTaskDescription] = useState(task["description"]);
-  const [taskStatus, setTaskStatus] = useState(task["status"]);
+  const [app_state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, setState] = useState({
+    title: task["title"],
+    description: task["description"],
+    status: task["status"],
+  });
   const changeValue = () => {
     var editedTask = {
       id: task["id"],
-      title: taskTitle,
-      description: taskDescription,
-      status: taskStatus,
+      title: state.title,
+      description: state.description,
+      status: state.status,
     };
     return taskContext.editTask(editedTask);
   };
   return (
     <div className="card">
-      <div className="card-header"></div>
+      {/* <div className="card-header"></div> */}
       <div className="card-body">
         <span
-          className={taskStatus ? "tag tag-done" : "tag tag-pending"}
-          onClick={(e) => setTaskStatus(!taskStatus)}
+          className={state.status ? "tag tag-done" : "tag tag-pending"}
+          onClick={(e) => {
+            return setState({
+              status: !state.status,
+              title: state.title,
+              description: state.description,
+            });
+          }}
         >
-          {taskStatus ? "DONE" : "PENDING"}
+          {state.status ? "DONE" : "PENDING"}
         </span>
         <h4>
-          {/* <Editable text={task["title"]} type="textarea"> */}
           <textarea
             className="text-title"
-            value={taskTitle}
+            // value={state.title}
+            value={state.title}
             onChange={(e) => {
-              return setTaskTitle(e.target.value), changeValue(e.target.value);
+              return (
+                // CLEAN THIS UP
+                dispatch({
+                  type: "EDIT_TASK",
+                  payload: {
+                    id: task["id"],
+                    title: e.target.value,
+                    description: task["description"],
+                    status: task["status"],
+                  },
+                }),
+                setState({
+                  status: state.status,
+                  title: e.target.value,
+                  description: state.description,
+                })
+                // changeValue(e.target.value)
+              );
             }}
-            // contentEditable="true"
           ></textarea>
-          {/* </Editable> */}
         </h4>
         <p>
           <textarea
             className="text-description"
-            // contentEditable="true"
-            value={taskDescription}
-            onChange={(e) => setTaskDescription(e.target.value)}
+            value={state.description}
+            onChange={(e) => {
+              return (
+                // CLEAN THIS UP
+                dispatch({
+                  type: "EDIT_TASK",
+                  payload: {
+                    id: task["id"],
+                    title: task["title"],
+                    description: e.target.value,
+                    status: task["status"],
+                  },
+                }),
+                setState({
+                  status: state.status,
+                  title: state.title,
+                  description: e.target.value,
+                })
+                // changeValue(e.target.value)
+              );
+            }}
           ></textarea>
         </p>
+        <div className="card-date">12-09-2010</div>
       </div>
     </div>
   );

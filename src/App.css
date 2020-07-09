@@ -126,7 +126,15 @@ label button {
   font-weight: 500;
   color: rgb(70, 68, 68);
 }
+.card-date {
+  font-size: 14px;
+  padding: 1px;
+  color: rgba(0, 0, 0, 0.52);
+  align-self: flex-end;
+}
 .tag {
+  cursor: pointer;
+  -webkit-user-select: none;
   background-color: #ccc;
   color: #fff;
   border-radius: 50px;
@@ -159,6 +167,7 @@ label button {
 .text-description {
   width: 250px;
   height: 120px;
+  color: rgba(0, 0, 0, 0.7);
 }
 .tasks {
   padding-top: 10px;
