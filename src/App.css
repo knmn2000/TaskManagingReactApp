@@ -14,15 +14,16 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding-top: 130px;
 }
 .grid {
   display: grid;
-  /* grid-template-columns: 2fr 1fr; */
-  grid-template-columns: repeat(2, 450px);
-  column-gap: 50px;
+  grid-template-columns: 2fr 1fr 5fr;
+  /* grid-template-columns: repeat(3, 450px); */
+  column-gap: 100px;
 }
 .navbar {
   overflow: hidden;
@@ -39,9 +40,30 @@ body {
   font-size: 40px;
   margin: 20px;
 }
+.sidebar {
+  list-style-type: none;
+  width: 250px;
+  height: 100%;
+  max-height: 620px;
+  align-items: stretch;
+  /* border: thin; */
+  border: 1px solid #dedede;
+  /* height: ; */
+  /* padding: 50px;
+  top: 84px;
+  right: 0;
+  left: 0;
+  z-index: 0; */
+  position: fixed;
+  background-color: #f8f8f8cc;
+}
 label {
   margin: 10px 0;
   display: flex;
+}
+.formgroup {
+  width: 35%;
+  position: fixed;
 }
 input,
 textarea {
@@ -51,6 +73,7 @@ textarea {
   font-size: 16px;
   padding: 10px;
   width: 100%;
+  resize: none;
 }
 input[type="checkbox"] {
   display: inline;
@@ -74,6 +97,7 @@ label span {
   padding: 1px;
   margin-left: 2px;
 }
+
 button {
   cursor: pointer;
   background-color: #000000;
@@ -85,6 +109,11 @@ button {
   margin: 10px 0 25px;
   padding: 5px;
   width: 100%;
+}
+.delete {
+  cursor: pointer;
+  position: absolute;
+  align-self: flex-end;
 }
 label button {
   width: 15%;
@@ -171,4 +200,75 @@ label button {
 }
 .tasks {
   padding-top: 10px;
+}
+
+dropdown {
+  display: inline-block;
+  margin: 20px 0px;
+  float: right;
+}
+dropdown input {
+  appearance: none;
+}
+
+dropdown label,
+dropdown ul li {
+  display: block;
+  width: 248px;
+  background: #eeeeee;
+  padding: 15px 10px;
+  float: right;
+}
+dropdown label:hover {
+  background: #000000;
+  color: white;
+  cursor: pointer;
+}
+dropdown ul li:hover {
+  background: #00000018;
+  color: rgb(92, 92, 92);
+  cursor: pointer;
+}
+dropdown label {
+  color: #000000;
+  /* border-left: 4px solid #1abc9c; */
+  position: relative;
+  z-index: 2;
+}
+
+dropdown input {
+  display: none;
+  visibility: hidden;
+}
+dropdown input ~ ul {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  top: -20px;
+  z-index: 1;
+}
+dropdown input:checked + label {
+  background: #000000;
+  color: white;
+}
+dropdown input:checked ~ ul {
+  visibility: visible;
+  opacity: 1;
+  top: -10px;
+}
+.animate {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Chrome and Safari */
+  -moz-backface-visibility: hidden; /* Firefox */
+  -ms-backface-visibility: hidden; /* Internet Explorer */
+}
+.animate .date {
+  background: #00000018;
+  color: rgb(92, 92, 92);
+  cursor: pointer;
 }

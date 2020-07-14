@@ -1,5 +1,11 @@
 export default (state, action) => {
   switch (action.type) {
+    case "SORT_TASK":
+      return {
+        ...state,
+        loading: false,
+        sort: action.payload,
+      };
     case "GET_TASKS":
       return {
         ...state,
@@ -11,6 +17,12 @@ export default (state, action) => {
         ...state,
         loading: false,
         tasks: [...state.tasks, action.payload],
+      };
+    case "DELETE_TASK":
+      return {
+        ...state,
+        loading: false,
+        tasks: action.payload,
       };
     case "EDIT_TASK":
       const task = action.payload;

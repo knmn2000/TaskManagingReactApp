@@ -1,13 +1,16 @@
 import React, { useState, useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { addTasks } from "../actions/task";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-export const AddTask = () => {
-  const { addTasks } = useContext(GlobalContext);
+import { connect } from "react-redux";
+const AddTask = ({ addTasks }) => {
+  // const { addTasks } = useContext(GlobalContext);
+  // TO DO - FIX DESCRIPTION.JS FOR GET_TASKS, SO THAT TASKS ARE NOT NULL
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState(false);
-
   const onSubmit = (e) => {
     e.preventDefault();
     const newTask = {
@@ -67,3 +70,8 @@ export const AddTask = () => {
     </>
   );
 };
+
+AddTask.propTypes = {
+  addTasks: PropTypes.func.isRequired,
+};
+export default connect(null, { addTasks })(AddTask);

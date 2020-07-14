@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useReducer } from "react";
+import React, { useState, useContext, useReducer } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import AppReducer from "./../context/AppReducer";
 //  TODO - CLEAN THIS UP
@@ -16,6 +16,9 @@ export const Card = ({ task }) => {
     description: task["description"],
     status: task["status"],
   });
+  var date = new Date();
+  date =
+    date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
   const changeValue = () => {
     var editedTask = {
       id: task["id"],
@@ -25,26 +28,48 @@ export const Card = ({ task }) => {
     };
     return taskContext.editTask(editedTask);
   };
+  const deleteTask = () => {
+    return taskContext.deleteTasks(task);
+  };
   return (
     <div className="card">
-      {/* <div className="card-header"></div> */}
       <div className="card-body">
+        <div className="card-header">
+          <span
+            className={state.status ? "tag tag-done" : "tag tag-pending"}
+            onClick={(e) => {
+              return (
+                dispatch({
+                  type: "EDIT_TASK",
+                  payload: {
+                    id: task["id"],
+                    title: task["title"],
+                    description: task["description"],
+                    status: !state.status,
+                  },
+                }),
+                setState({
+                  status: !state.status,
+                  title: state.title,
+                  description: state.description,
+                })
+              );
+            }}
+          >
+            {state.status ? "DONE" : "PENDING"}
+          </span>
+        </div>
         <span
-          className={state.status ? "tag tag-done" : "tag tag-pending"}
-          onClick={(e) => {
-            return setState({
-              status: !state.status,
-              title: state.title,
-              description: state.description,
-            });
+          className="delete"
+          onClick={() => {
+            deleteTask();
           }}
         >
-          {state.status ? "DONE" : "PENDING"}
+          x
         </span>
         <h4>
           <textarea
             className="text-title"
-            // value={state.title}
             value={state.title}
             onChange={(e) => {
               return (
@@ -94,7 +119,7 @@ export const Card = ({ task }) => {
             }}
           ></textarea>
         </p>
-        <div className="card-date">12-09-2010</div>
+        <div className="card-date">{date}</div>
       </div>
     </div>
   );

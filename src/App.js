@@ -1,8 +1,9 @@
 import React from "react";
 import { Navbar } from "./components/Navbar";
 import { Description } from "./components/Description";
-import { AddTask } from "./components/AddTask";
-import { Tasks } from "./components/Tasks";
+import AddTask from "./components/AddTask";
+import Tasks from "./components/Tasks";
+import Sidebar from "./components/Sidebar";
 import "./App.css";
 import { GlobalProvider } from "./context/GlobalState";
 
@@ -13,6 +14,9 @@ function App() {
         <Navbar />
         <div className="container">
           <div className="grid">
+            <div className="column">
+              <Sidebar />
+            </div>
             <div className="column">
               <Tasks />
             </div>

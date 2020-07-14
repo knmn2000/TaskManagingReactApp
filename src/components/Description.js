@@ -20,7 +20,7 @@ export const Description = () => {
   });
   return (
     <div className="description">
-      <span className="done"> {completed_tasks.length} Done</span>,{" "}
+      <span className="done"> {completed_tasks.length} Done</span> -{" "}
       <span className="pending">{pending_tasks.length} Pending</span>
     </div>
   );
