@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "./components/Navbar";
-import { Description } from "./components/Description";
+import Description from "./components/Description";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 import Sidebar from "./components/Sidebar";

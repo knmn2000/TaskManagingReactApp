@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 const AddTask = ({ addTasks }) => {
-  // const { addTasks } = useContext(GlobalContext);
+  const { addTaskss } = useContext(GlobalContext);
   // TO DO - FIX DESCRIPTION.JS FOR GET_TASKS, SO THAT TASKS ARE NOT NULL
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +19,7 @@ const AddTask = ({ addTasks }) => {
       description,
       status,
     };
-
+    // addTaskss(newTask);
     addTasks(newTask);
   };
   return (

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { sortTasks } from "../actions/sort";
 import PropTypes from "prop-types";
 const Sidebar = ({ sort, sortTasks }) => {
+  console.log(sort);
   const set_sort = (parameter) => {
     sortTasks({ parameter });
   };
@@ -44,11 +45,11 @@ const mapStateToProps = (state) => {
     sort: state.sort,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    sortTask: (parameter) => {
-      dispatch({ type: "SORT_TASK", payload: parameter });
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     sortTask: (parameter) => {
+//       dispatch({ type: "SORT_TASK", payload: parameter });
+//     },
+//   };
+// };
 export default connect(mapStateToProps, { sortTasks })(Sidebar);

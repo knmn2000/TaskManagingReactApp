@@ -1,8 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { connect } from "react-redux";
+import { getTasks } from "../actions/task";
+import PropTypes from "prop-types";
 
-export const Description = () => {
+const Description = (props) => {
   const { tasks, getTasks } = useContext(GlobalContext);
+  console.log(props);
   let completed_tasks = [];
   let pending_tasks = [];
   useEffect(() => {
@@ -25,3 +29,16 @@ export const Description = () => {
     </div>
   );
 };
+
+Description.propTypes = {
+  getTasks: PropTypes.func.isRequired,
+  tasks: PropTypes.object,
+  sort: PropTypes.string.isRequired,
+};
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.task.tasks,
+    sort: state.task.sort,
+  };
+};
+export default connect(mapStateToProps, { getTasks })(Description);
