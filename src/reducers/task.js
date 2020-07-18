@@ -1,4 +1,10 @@
-import { SORT_TASK, ADD_TASK, GET_TASKS } from "../actions/types";
+import {
+  SORT_TASK,
+  ADD_TASK,
+  GET_TASKS,
+  DELETE_TASK,
+  EDIT_TASK,
+} from "../actions/types";
 const initState = {
   tasks: [],
   loading: true,
@@ -24,6 +30,18 @@ export default function (state = initState, action) {
         ...state,
         loading: false,
         tasks: action.payload,
+      };
+    case DELETE_TASK:
+      return {
+        ...state,
+        loading: false,
+        tasks: action.payload,
+      };
+    case EDIT_TASK:
+      return {
+        ...state,
+        loading: false,
+        tasks: [...state.tasks, action.payload],
       };
     default:
       return state;

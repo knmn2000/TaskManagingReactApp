@@ -1,12 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getTasks } from "../actions/task";
 import PropTypes from "prop-types";
 
-const Description = (props) => {
-  const { tasks, getTasks } = useContext(GlobalContext);
-  console.log(props);
+const Description = ({ tasks, getTasks }) => {
   let completed_tasks = [];
   let pending_tasks = [];
   useEffect(() => {
@@ -32,7 +29,7 @@ const Description = (props) => {
 
 Description.propTypes = {
   getTasks: PropTypes.func.isRequired,
-  tasks: PropTypes.object,
+  tasks: PropTypes.array,
   sort: PropTypes.string.isRequired,
 };
 const mapStateToProps = (state) => {

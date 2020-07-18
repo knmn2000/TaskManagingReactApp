@@ -1,16 +1,9 @@
-import React, { useState, useContext, useReducer } from "react";
-import { GlobalContext } from "../context/GlobalState";
-import AppReducer from "./../context/AppReducer";
-//  TODO - CLEAN THIS UP
-//         REMOVE REDUNDANT STUFF
-export const Card = ({ task }) => {
-  const initialState = {
-    tasks: [],
-    error: null,
-    loading: true,
-  };
-  const taskContext = useContext(GlobalContext);
-  const [app_state, dispatch] = useReducer(AppReducer, initialState);
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { deleteTasks, editTask } from "../actions/task";
+
+const Card = ({ task, deleteTasks, editTask }) => {
   const [state, setState] = useState({
     title: task["title"],
     description: task["description"],
@@ -19,17 +12,11 @@ export const Card = ({ task }) => {
   var date = new Date();
   date =
     date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-  const changeValue = () => {
-    var editedTask = {
-      id: task["id"],
-      title: state.title,
-      description: state.description,
-      status: state.status,
-    };
-    return taskContext.editTask(editedTask);
-  };
   const deleteTask = () => {
-    return taskContext.deleteTasks(task);
+    return deleteTasks(task);
+  };
+  const modifyTask = (task) => {
+    return editTask(task);
   };
   return (
     <div className="card">
@@ -39,14 +26,11 @@ export const Card = ({ task }) => {
             className={state.status ? "tag tag-done" : "tag tag-pending"}
             onClick={(e) => {
               return (
-                dispatch({
-                  type: "EDIT_TASK",
-                  payload: {
-                    id: task["id"],
-                    title: task["title"],
-                    description: task["description"],
-                    status: !state.status,
-                  },
+                modifyTask({
+                  id: task["id"],
+                  title: task["title"],
+                  description: task["description"],
+                  status: !state.status,
                 }),
                 setState({
                   status: !state.status,
@@ -73,22 +57,17 @@ export const Card = ({ task }) => {
             value={state.title}
             onChange={(e) => {
               return (
-                // CLEAN THIS UP
-                dispatch({
-                  type: "EDIT_TASK",
-                  payload: {
-                    id: task["id"],
-                    title: e.target.value,
-                    description: task["description"],
-                    status: task["status"],
-                  },
+                modifyTask({
+                  id: task["id"],
+                  title: e.target.value,
+                  description: task["description"],
+                  status: task["status"],
                 }),
                 setState({
                   status: state.status,
                   title: e.target.value,
                   description: state.description,
                 })
-                // changeValue(e.target.value)
               );
             }}
           ></textarea>
@@ -99,22 +78,17 @@ export const Card = ({ task }) => {
             value={state.description}
             onChange={(e) => {
               return (
-                // CLEAN THIS UP
-                dispatch({
-                  type: "EDIT_TASK",
-                  payload: {
-                    id: task["id"],
-                    title: task["title"],
-                    description: e.target.value,
-                    status: task["status"],
-                  },
+                modifyTask({
+                  id: task["id"],
+                  title: task["title"],
+                  description: e.target.value,
+                  status: task["status"],
                 }),
                 setState({
                   status: state.status,
                   title: state.title,
                   description: e.target.value,
                 })
-                // changeValue(e.target.value)
               );
             }}
           ></textarea>
@@ -124,3 +98,9 @@ export const Card = ({ task }) => {
     </div>
   );
 };
+
+Card.propTypes = {
+  deleteTasks: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
+};
+export default connect(null, { deleteTasks, editTask })(Card);

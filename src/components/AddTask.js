@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React, { useState } from "react";
 import { addTasks } from "../actions/task";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 const AddTask = ({ addTasks }) => {
-  const { addTaskss } = useContext(GlobalContext);
   // TO DO - FIX DESCRIPTION.JS FOR GET_TASKS, SO THAT TASKS ARE NOT NULL
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +17,6 @@ const AddTask = ({ addTasks }) => {
       description,
       status,
     };
-    // addTaskss(newTask);
     addTasks(newTask);
   };
   return (

@@ -1,16 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { GlobalContext } from "../context/GlobalState";
-import { Card } from "./Card";
+import React, { useEffect } from "react";
+import Card from "./Card";
 import { connect } from "react-redux";
 import { getTasks } from "../actions/task";
 import PropTypes from "prop-types";
 
 const Tasks = ({ getTasks, tasks, sort }) => {
-  // const { tasks, getTasks, sort } = useContext(GlobalContext);
   useEffect(() => {
-    // getTasks();
     getTasks();
-  }, []);
+  }, [tasks.length]);
   return (
     <div className="tasks">
       {tasks.map((task) => {
@@ -27,14 +24,13 @@ const Tasks = ({ getTasks, tasks, sort }) => {
 };
 Tasks.propTypes = {
   getTasks: PropTypes.func.isRequired,
-  tasks: PropTypes.object,
+  tasks: PropTypes.array,
   sort: PropTypes.string,
 };
 const mapStateToProps = (state) => {
   return {
     tasks: state.task.tasks,
     sort: state.task.sort,
-    getTasks: state.task.getTasks,
   };
 };
 export default connect(mapStateToProps, { getTasks })(Tasks);

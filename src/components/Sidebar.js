@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React from "react";
 import { connect } from "react-redux";
 import { sortTasks } from "../actions/sort";
 import PropTypes from "prop-types";
 const Sidebar = ({ sort, sortTasks }) => {
-  console.log(sort);
   const set_sort = (parameter) => {
     sortTasks({ parameter });
   };
