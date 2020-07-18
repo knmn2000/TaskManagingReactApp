@@ -1,7 +1,9 @@
-import React from "react";
 import { connect } from "react-redux";
-import { sortTasks } from "../actions/sort";
 import PropTypes from "prop-types";
+import React from "react";
+
+import { sortTasks } from "../actions/sort";
+
 const Sidebar = ({ sort, sortTasks }) => {
   const set_sort = (parameter) => {
     sortTasks({ parameter });

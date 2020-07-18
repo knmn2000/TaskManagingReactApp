@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+
 import { deleteTasks, editTask } from "../actions/task";
 
 const Card = ({ task, deleteTasks, editTask }) => {

@@ -1,4 +1,5 @@
 import { ADD_TASK, EDIT_TASK, GET_TASKS, DELETE_TASK } from "./types";
+
 const default_task = {
   id: 0,
   title: "Add Title",

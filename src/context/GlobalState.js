@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from "react";
+
 import AppReducer from "./AppReducer";
+
 const initialState = {
   tasks: [],
   error: null,
@@ -32,7 +34,6 @@ export const GlobalProvider = ({ children }) => {
       localStorage.setItem("tasks", JSON.stringify(tasks_array));
       dispatch({
         type: "ADD_TASK",
-        // payload: task,
         payload: task,
       });
     } catch (err) {

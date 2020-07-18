@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { addTasks } from "../actions/task";
-import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+
+import { addTasks } from "../actions/task";
+
 const AddTask = ({ addTasks }) => {
-  // TO DO - FIX DESCRIPTION.JS FOR GET_TASKS, SO THAT TASKS ARE NOT NULL
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState(false);
@@ -53,11 +54,6 @@ const AddTask = ({ addTasks }) => {
                 )}
               </span>
             </button>
-            {/* <input
-              type="checkbox"
-              value={status}
-              onChange={(e) => setStatus(!status)}
-            /> */}
           </label>
         </div>
         <button type="submit" className="btn">

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import Card from "./Card";
 import { connect } from "react-redux";
-import { getTasks } from "../actions/task";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+
+import { getTasks } from "../actions/task";
+import Card from "./Card";
 
 const Tasks = ({ getTasks, tasks, sort }) => {
   useEffect(() => {

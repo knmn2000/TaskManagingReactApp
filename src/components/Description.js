@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getTasks } from "../actions/task";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+
+import { getTasks } from "../actions/task";
 
 const Description = ({ tasks, getTasks }) => {
   let completed_tasks = [];
